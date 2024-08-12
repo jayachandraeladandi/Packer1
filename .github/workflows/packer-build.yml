@@ -15,7 +15,7 @@ jobs:
     steps:
 
     - name: Validate Packer template
-      run: packer validate Development/windows_2019.pkr.hcl
+      run: packer validate windows_2019.pkr.hcl
       
     - name: Build with Packer
-      run: packer build Development/windows_2019.pkr.hcl
+      run: packer build windows_2019.pkr.hcl
