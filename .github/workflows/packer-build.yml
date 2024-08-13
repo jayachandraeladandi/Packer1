@@ -15,6 +15,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Install Packer
+      run: |
+        if (-not (Get-Command "packer" -ErrorAction SilentlyContinue)) {
+          Write-Host "Packer could not be found, installing..."
+          choco install packer -y
+        }
       
     - name: Validate Packer template
       run: packer validate Development/windows_2019.pkr.hcl
