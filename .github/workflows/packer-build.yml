@@ -15,7 +15,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
     - name: Install Packer
       run: |
         curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
@@ -30,27 +29,37 @@ jobs:
         export AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
         export AZURE_CLIENT_VALUE=${{ secrets.AZURE_CLIENT_VALUE }}
 
-    env:
-      PKR_VAR_os_type: ${{ secrets.os_type }}
-      PKR_VAR_image_publisher: ${{ secrets.image_publisher }}
-      PKR_VAR_image_offer: ${{ secrets.image_offer }}
-      PKR_VAR_image_sku: ${{ secrets.image_sku }}
-      PKR_VAR_location: ${{ secrets.location }}
-      PKR_VAR_vm_size: ${{ secrets.vm_size }}
-      PKR_VAR_winrm_timeout: ${{ secrets.winrm_timeout }}
-      PKR_VAR_resource_group: ${{ secrets.resource_group }}
-      PKR_VAR_gallery_name: ${{ secrets.gallery_name }}
-      PKR_VAR_image_name: ${{ secrets.image_name }}
-      PKR_VAR_image_version: ${{ secrets.image_version }}
 
-  - name: Initialize Packer
-    run: packer init Development/windows_2019.pkr.hcl    
 
-  - name: Verify Packer Installation
-    run: packer version
-    
- - name: Validate Packer template
-   run: packer validate Development/windows_2019.pkr.hcl
-      
+
+
+
+    - name: Initialize Packer
+      run: packer init Development/windows_2019.pkr.hcl
+
+    - name: Verify Packer Installation
+      run: packer version
+
+    - name: Validate Packer template
+      run: packer validate Development/windows_2019.pkr.hcl
+
     - name: Build with Packer
-      run: packer build Development/windows_2019.pkr.hcl
+      run: packer build Development/windows_2019.pkr.hcl 
+
+
+    env:
+      PKR_VAR_os_type: ${{ variables.os_type }}
+      PKR_VAR_image_publisher: ${{ variables.image_publisher }}
+      PKR_VAR_image_offer: ${{ variables.image_offer }}
+      PKR_VAR_image_sku: ${{ variables.image_sku }}
+      PKR_VAR_location: ${{ variables.location }}
+      PKR_VAR_vm_size: ${{ variables.vm_size }}
+      PKR_VAR_winrm_timeout: ${{ variables.winrm_timeout }}
+      PKR_VAR_resource_group: ${{ variables.resource_group }}
+      PKR_VAR_gallery_name: ${{ variables.gallery_name }}
+      PKR_VAR_image_name: ${{ variables.image_name }}
+      PKR_VAR_image_version: ${{ variables.image_version }} 
+
+   
+
+
