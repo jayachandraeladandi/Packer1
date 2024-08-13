@@ -15,10 +15,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
-    - name: Install Packer
-      run: |
-        choco install packer -y
       
     - name: Validate Packer template
       run: packer validate Development/windows_2019.pkr.hcl
