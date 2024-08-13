@@ -21,7 +21,13 @@ jobs:
         curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
         sudo apt-get update && sudo apt-get install -y packer
-    
+    - name: Configure Azure credentials
+      run: |
+        export AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        export AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
+        export AZURE_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
+        export AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
+        export AZURE_CLIENT_VALUE=${{ secrets.AZURE_CLIENT_VALUE }}
     - name: Verify Packer Installation
       run: packer version
     
