@@ -28,6 +28,10 @@ jobs:
         export AZURE_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
         export AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
         export AZURE_CLIENT_VALUE=${{ secrets.AZURE_CLIENT_VALUE }}
+
+    - name: Initialize Packer
+      run: packer init Development/windows_2019.pkr.hcl    
+      
     - name: Verify Packer Installation
       run: packer version
     
