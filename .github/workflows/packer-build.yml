@@ -43,14 +43,14 @@ jobs:
       PKR_VAR_image_name: ${{ secrets.image_name }}
       PKR_VAR_image_version: ${{ secrets.image_version }}
 
-    - name: Initialize Packer
-      run: packer init Development/windows_2019.pkr.hcl    
+  - name: Initialize Packer
+    run: packer init Development/windows_2019.pkr.hcl    
 
-    - name: Verify Packer Installation
-      run: packer version
+  - name: Verify Packer Installation
+    run: packer version
     
-    - name: Validate Packer template
-      run: packer validate Development/windows_2019.pkr.hcl
+ - name: Validate Packer template
+   run: packer validate Development/windows_2019.pkr.hcl
       
     - name: Build with Packer
       run: packer build Development/windows_2019.pkr.hcl
