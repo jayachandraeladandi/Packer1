@@ -3,10 +3,10 @@ name: Packer Build
 on:
   push:
     branches:
-      - main
+      - sample
   pull_request:
     branches:
-      - main
+      - sample
 
 jobs:
   build:
