@@ -13,7 +13,7 @@ jobs:
     runs-on: self-hosted
 
     env:
-      PKR_VAR_os_type: ${{ variables.os_type }}
+     
       PKR_VAR_image_publisher: ${{ variables.image_publisher }}
       PKR_VAR_image_offer: ${{ variables.image_offer }}
       PKR_VAR_image_sku: ${{ variables.image_sku }}
