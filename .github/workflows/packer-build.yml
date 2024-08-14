@@ -44,7 +44,7 @@ jobs:
       run: packer validate Development/windows_2019.pkr.hcl
 
     - name: Build with Packer
-      run: packer build Development/windows_2019.pkr.hcl 
+      run: packer build Development/windows_2019.pkr.hcl
 
 
     env:
